@@ -10,12 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as CustomerSignupRouteImport } from './routes/customer.signup'
+import { Route as ProducerIdRouteImport } from './routes/producer.$id'
+import { Route as ProductIdRouteImport } from './routes/product.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -28,35 +36,76 @@ const CustomerSignupRoute = CustomerSignupRouteImport.update({
   path: '/customer/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProducerIdRoute = ProducerIdRouteImport.update({
+  id: '/producer/$id',
+  path: '/producer/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductIdRoute = ProductIdRouteImport.update({
+  id: '/product/$id',
+  path: '/product/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
   '/profile': typeof ProfileRoute
   '/customer/signup': typeof CustomerSignupRoute
+  '/producer/$id': typeof ProducerIdRoute
+  '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
   '/profile': typeof ProfileRoute
   '/customer/signup': typeof CustomerSignupRoute
+  '/producer/$id': typeof ProducerIdRoute
+  '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
   '/profile': typeof ProfileRoute
   '/customer/signup': typeof CustomerSignupRoute
+  '/producer/$id': typeof ProducerIdRoute
+  '/product/$id': typeof ProductIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/profile' | '/customer/signup'
+  fullPaths:
+    | '/'
+    | '/discover'
+    | '/profile'
+    | '/customer/signup'
+    | '/producer/$id'
+    | '/product/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/profile' | '/customer/signup'
-  id: '__root__' | '/' | '/profile' | '/customer/signup'
+  to:
+    | '/'
+    | '/discover'
+    | '/profile'
+    | '/customer/signup'
+    | '/producer/$id'
+    | '/product/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/discover'
+    | '/profile'
+    | '/customer/signup'
+    | '/producer/$id'
+    | '/product/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DiscoverRoute: typeof DiscoverRoute
   ProfileRoute: typeof ProfileRoute
   CustomerSignupRoute: typeof CustomerSignupRoute
+  ProducerIdRoute: typeof ProducerIdRoute
+  ProductIdRoute: typeof ProductIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -82,13 +138,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerSignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/producer/$id': {
+      id: '/producer/$id'
+      path: '/producer/$id'
+      fullPath: '/producer/$id'
+      preLoaderRoute: typeof ProducerIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$id': {
+      id: '/product/$id'
+      path: '/product/$id'
+      fullPath: '/product/$id'
+      preLoaderRoute: typeof ProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DiscoverRoute: DiscoverRoute,
   ProfileRoute: ProfileRoute,
   CustomerSignupRoute: CustomerSignupRoute,
+  ProducerIdRoute: ProducerIdRoute,
+  ProductIdRoute: ProductIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
