@@ -91,7 +91,7 @@ function CustomerSignup() {
         name: form.name.trim(),
         email: form.email.trim(),
         dietary: diet,
-        zip: zip || undefined,
+        ...(zip ? { zip } : {}),
       });
       toast.success("Welcome to Hearth & Table!");
       navigate({ to: "/discover" });
@@ -142,7 +142,7 @@ function CustomerSignup() {
                 id="name"
                 label="Full name"
                 value={form.name}
-                error={touched.name ? errors.name : ""}
+                error={touched["name"] ? errors.name : ""}
                 onBlur={() => setTouched((t) => ({ ...t, name: true }))}
                 onChange={(v) => setForm((f) => ({ ...f, name: v }))}
                 placeholder="Jordan Reyes"
@@ -152,7 +152,7 @@ function CustomerSignup() {
                 label="Email"
                 type="email"
                 value={form.email}
-                error={touched.email ? errors.email : ""}
+                error={touched["email"] ? errors.email : ""}
                 onBlur={() => setTouched((t) => ({ ...t, email: true }))}
                 onChange={(v) => setForm((f) => ({ ...f, email: v }))}
                 placeholder="you@example.com"
@@ -162,7 +162,7 @@ function CustomerSignup() {
                 label="Password"
                 type="password"
                 value={form.password}
-                error={touched.password ? errors.password : ""}
+                error={touched["password"] ? errors.password : ""}
                 onBlur={() => setTouched((t) => ({ ...t, password: true }))}
                 onChange={(v) => setForm((f) => ({ ...f, password: v }))}
                 placeholder="At least 6 characters"
