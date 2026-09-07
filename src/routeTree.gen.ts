@@ -10,33 +10,167 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as MyBookingsRouteImport } from './routes/my-bookings'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as BookingProductIdRouteImport } from './routes/booking.$productId'
+import { Route as CustomerSignupRouteImport } from './routes/customer.signup'
+import { Route as ProducerIdRouteImport } from './routes/producer.$id'
+import { Route as ProducerSignupRouteImport } from './routes/producer.signup'
+import { Route as ProducerVerifyRouteImport } from './routes/producer.verify'
+import { Route as ProductIdRouteImport } from './routes/product.$id'
+import { Route as BookingConfirmIdRouteImport } from './routes/booking.confirm.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyBookingsRoute = MyBookingsRouteImport.update({
+  id: '/my-bookings',
+  path: '/my-bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingProductIdRoute = BookingProductIdRouteImport.update({
+  id: '/booking/$productId',
+  path: '/booking/$productId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerSignupRoute = CustomerSignupRouteImport.update({
+  id: '/customer/signup',
+  path: '/customer/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducerIdRoute = ProducerIdRouteImport.update({
+  id: '/producer/$id',
+  path: '/producer/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducerSignupRoute = ProducerSignupRouteImport.update({
+  id: '/producer/signup',
+  path: '/producer/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducerVerifyRoute = ProducerVerifyRouteImport.update({
+  id: '/producer/verify',
+  path: '/producer/verify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductIdRoute = ProductIdRouteImport.update({
+  id: '/product/$id',
+  path: '/product/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingConfirmIdRoute = BookingConfirmIdRouteImport.update({
+  id: '/booking/confirm/$id',
+  path: '/booking/confirm/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/my-bookings': typeof MyBookingsRoute
+  '/profile': typeof ProfileRoute
+  '/booking/$productId': typeof BookingProductIdRoute
+  '/customer/signup': typeof CustomerSignupRoute
+  '/producer/$id': typeof ProducerIdRoute
+  '/producer/signup': typeof ProducerSignupRoute
+  '/producer/verify': typeof ProducerVerifyRoute
+  '/product/$id': typeof ProductIdRoute
+  '/booking/confirm/$id': typeof BookingConfirmIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/my-bookings': typeof MyBookingsRoute
+  '/profile': typeof ProfileRoute
+  '/booking/$productId': typeof BookingProductIdRoute
+  '/customer/signup': typeof CustomerSignupRoute
+  '/producer/$id': typeof ProducerIdRoute
+  '/producer/signup': typeof ProducerSignupRoute
+  '/producer/verify': typeof ProducerVerifyRoute
+  '/product/$id': typeof ProductIdRoute
+  '/booking/confirm/$id': typeof BookingConfirmIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/discover': typeof DiscoverRoute
+  '/my-bookings': typeof MyBookingsRoute
+  '/profile': typeof ProfileRoute
+  '/booking/$productId': typeof BookingProductIdRoute
+  '/customer/signup': typeof CustomerSignupRoute
+  '/producer/$id': typeof ProducerIdRoute
+  '/producer/signup': typeof ProducerSignupRoute
+  '/producer/verify': typeof ProducerVerifyRoute
+  '/product/$id': typeof ProductIdRoute
+  '/booking/confirm/$id': typeof BookingConfirmIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/discover'
+    | '/my-bookings'
+    | '/profile'
+    | '/booking/$productId'
+    | '/customer/signup'
+    | '/producer/$id'
+    | '/producer/signup'
+    | '/producer/verify'
+    | '/product/$id'
+    | '/booking/confirm/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/discover'
+    | '/my-bookings'
+    | '/profile'
+    | '/booking/$productId'
+    | '/customer/signup'
+    | '/producer/$id'
+    | '/producer/signup'
+    | '/producer/verify'
+    | '/product/$id'
+    | '/booking/confirm/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/discover'
+    | '/my-bookings'
+    | '/profile'
+    | '/booking/$productId'
+    | '/customer/signup'
+    | '/producer/$id'
+    | '/producer/signup'
+    | '/producer/verify'
+    | '/product/$id'
+    | '/booking/confirm/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DiscoverRoute: typeof DiscoverRoute
+  MyBookingsRoute: typeof MyBookingsRoute
+  ProfileRoute: typeof ProfileRoute
+  BookingProductIdRoute: typeof BookingProductIdRoute
+  CustomerSignupRoute: typeof CustomerSignupRoute
+  ProducerIdRoute: typeof ProducerIdRoute
+  ProducerSignupRoute: typeof ProducerSignupRoute
+  ProducerVerifyRoute: typeof ProducerVerifyRoute
+  ProductIdRoute: typeof ProductIdRoute
+  BookingConfirmIdRoute: typeof BookingConfirmIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +182,91 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-bookings': {
+      id: '/my-bookings'
+      path: '/my-bookings'
+      fullPath: '/my-bookings'
+      preLoaderRoute: typeof MyBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking/$productId': {
+      id: '/booking/$productId'
+      path: '/booking/$productId'
+      fullPath: '/booking/$productId'
+      preLoaderRoute: typeof BookingProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer/signup': {
+      id: '/customer/signup'
+      path: '/customer/signup'
+      fullPath: '/customer/signup'
+      preLoaderRoute: typeof CustomerSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producer/$id': {
+      id: '/producer/$id'
+      path: '/producer/$id'
+      fullPath: '/producer/$id'
+      preLoaderRoute: typeof ProducerIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producer/signup': {
+      id: '/producer/signup'
+      path: '/producer/signup'
+      fullPath: '/producer/signup'
+      preLoaderRoute: typeof ProducerSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producer/verify': {
+      id: '/producer/verify'
+      path: '/producer/verify'
+      fullPath: '/producer/verify'
+      preLoaderRoute: typeof ProducerVerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product/$id': {
+      id: '/product/$id'
+      path: '/product/$id'
+      fullPath: '/product/$id'
+      preLoaderRoute: typeof ProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking/confirm/$id': {
+      id: '/booking/confirm/$id'
+      path: '/booking/confirm/$id'
+      fullPath: '/booking/confirm/$id'
+      preLoaderRoute: typeof BookingConfirmIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DiscoverRoute: DiscoverRoute,
+  MyBookingsRoute: MyBookingsRoute,
+  ProfileRoute: ProfileRoute,
+  BookingProductIdRoute: BookingProductIdRoute,
+  CustomerSignupRoute: CustomerSignupRoute,
+  ProducerIdRoute: ProducerIdRoute,
+  ProducerSignupRoute: ProducerSignupRoute,
+  ProducerVerifyRoute: ProducerVerifyRoute,
+  ProductIdRoute: ProductIdRoute,
+  BookingConfirmIdRoute: BookingConfirmIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
