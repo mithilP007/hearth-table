@@ -48,7 +48,7 @@ function BookingConfirmation() {
   const product = slot?.products;
   const producer = product?.producers;
 
-  function addToCalendar() {
+  const addToCalendar = () => {
     if (!slot) return;
     const start = new Date(`${slot.date}T${slot.start_time}`);
     const end = new Date(start.getTime() + 30 * 60 * 1000);
@@ -75,9 +75,9 @@ function BookingConfirmation() {
     a.click();
     URL.revokeObjectURL(url);
     toast.success("Calendar file downloaded.");
-  }
+  };
 
-  async function share() {
+  const share = async () => {
     const shareUrl = window.location.href;
     const text = `My Hearth & Table tasting ${booking.booking_ref}`;
     try {
@@ -90,7 +90,7 @@ function BookingConfirmation() {
     } catch {
       toast.error("Couldn't share that link.");
     }
-  }
+  };
 
   return (
     <CustomerShell>

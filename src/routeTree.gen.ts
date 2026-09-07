@@ -11,10 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as MyBookingsRouteImport } from './routes/my-bookings'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as BookingProductIdRouteImport } from './routes/booking.$productId'
 import { Route as CustomerSignupRouteImport } from './routes/customer.signup'
 import { Route as ProducerIdRouteImport } from './routes/producer.$id'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
+import { Route as BookingConfirmIdRouteImport } from './routes/booking.confirm.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -26,9 +29,19 @@ const DiscoverRoute = DiscoverRouteImport.update({
   path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MyBookingsRoute = MyBookingsRouteImport.update({
+  id: '/my-bookings',
+  path: '/my-bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingProductIdRoute = BookingProductIdRouteImport.update({
+  id: '/booking/$productId',
+  path: '/booking/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CustomerSignupRoute = CustomerSignupRouteImport.update({
@@ -46,66 +59,92 @@ const ProductIdRoute = ProductIdRouteImport.update({
   path: '/product/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookingConfirmIdRoute = BookingConfirmIdRouteImport.update({
+  id: '/booking/confirm/$id',
+  path: '/booking/confirm/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/discover': typeof DiscoverRoute
+  '/my-bookings': typeof MyBookingsRoute
   '/profile': typeof ProfileRoute
+  '/booking/$productId': typeof BookingProductIdRoute
   '/customer/signup': typeof CustomerSignupRoute
   '/producer/$id': typeof ProducerIdRoute
   '/product/$id': typeof ProductIdRoute
+  '/booking/confirm/$id': typeof BookingConfirmIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/discover': typeof DiscoverRoute
+  '/my-bookings': typeof MyBookingsRoute
   '/profile': typeof ProfileRoute
+  '/booking/$productId': typeof BookingProductIdRoute
   '/customer/signup': typeof CustomerSignupRoute
   '/producer/$id': typeof ProducerIdRoute
   '/product/$id': typeof ProductIdRoute
+  '/booking/confirm/$id': typeof BookingConfirmIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/discover': typeof DiscoverRoute
+  '/my-bookings': typeof MyBookingsRoute
   '/profile': typeof ProfileRoute
+  '/booking/$productId': typeof BookingProductIdRoute
   '/customer/signup': typeof CustomerSignupRoute
   '/producer/$id': typeof ProducerIdRoute
   '/product/$id': typeof ProductIdRoute
+  '/booking/confirm/$id': typeof BookingConfirmIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/discover'
+    | '/my-bookings'
     | '/profile'
+    | '/booking/$productId'
     | '/customer/signup'
     | '/producer/$id'
     | '/product/$id'
+    | '/booking/confirm/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/discover'
+    | '/my-bookings'
     | '/profile'
+    | '/booking/$productId'
     | '/customer/signup'
     | '/producer/$id'
     | '/product/$id'
+    | '/booking/confirm/$id'
   id:
     | '__root__'
     | '/'
     | '/discover'
+    | '/my-bookings'
     | '/profile'
+    | '/booking/$productId'
     | '/customer/signup'
     | '/producer/$id'
     | '/product/$id'
+    | '/booking/confirm/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiscoverRoute: typeof DiscoverRoute
+  MyBookingsRoute: typeof MyBookingsRoute
   ProfileRoute: typeof ProfileRoute
+  BookingProductIdRoute: typeof BookingProductIdRoute
   CustomerSignupRoute: typeof CustomerSignupRoute
   ProducerIdRoute: typeof ProducerIdRoute
   ProductIdRoute: typeof ProductIdRoute
+  BookingConfirmIdRoute: typeof BookingConfirmIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -124,11 +163,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/my-bookings': {
+      id: '/my-bookings'
+      path: '/my-bookings'
+      fullPath: '/my-bookings'
+      preLoaderRoute: typeof MyBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking/$productId': {
+      id: '/booking/$productId'
+      path: '/booking/$productId'
+      fullPath: '/booking/$productId'
+      preLoaderRoute: typeof BookingProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/customer/signup': {
@@ -152,16 +205,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/booking/confirm/$id': {
+      id: '/booking/confirm/$id'
+      path: '/booking/confirm/$id'
+      fullPath: '/booking/confirm/$id'
+      preLoaderRoute: typeof BookingConfirmIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiscoverRoute: DiscoverRoute,
+  MyBookingsRoute: MyBookingsRoute,
   ProfileRoute: ProfileRoute,
+  BookingProductIdRoute: BookingProductIdRoute,
   CustomerSignupRoute: CustomerSignupRoute,
   ProducerIdRoute: ProducerIdRoute,
   ProductIdRoute: ProductIdRoute,
+  BookingConfirmIdRoute: BookingConfirmIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
