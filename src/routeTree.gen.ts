@@ -16,6 +16,8 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as BookingProductIdRouteImport } from './routes/booking.$productId'
 import { Route as CustomerSignupRouteImport } from './routes/customer.signup'
 import { Route as ProducerIdRouteImport } from './routes/producer.$id'
+import { Route as ProducerSignupRouteImport } from './routes/producer.signup'
+import { Route as ProducerVerifyRouteImport } from './routes/producer.verify'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
 import { Route as BookingConfirmIdRouteImport } from './routes/booking.confirm.$id'
 
@@ -54,6 +56,16 @@ const ProducerIdRoute = ProducerIdRouteImport.update({
   path: '/producer/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProducerSignupRoute = ProducerSignupRouteImport.update({
+  id: '/producer/signup',
+  path: '/producer/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducerVerifyRoute = ProducerVerifyRouteImport.update({
+  id: '/producer/verify',
+  path: '/producer/verify',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductIdRoute = ProductIdRouteImport.update({
   id: '/product/$id',
   path: '/product/$id',
@@ -73,6 +85,8 @@ export interface FileRoutesByFullPath {
   '/booking/$productId': typeof BookingProductIdRoute
   '/customer/signup': typeof CustomerSignupRoute
   '/producer/$id': typeof ProducerIdRoute
+  '/producer/signup': typeof ProducerSignupRoute
+  '/producer/verify': typeof ProducerVerifyRoute
   '/product/$id': typeof ProductIdRoute
   '/booking/confirm/$id': typeof BookingConfirmIdRoute
 }
@@ -84,6 +98,8 @@ export interface FileRoutesByTo {
   '/booking/$productId': typeof BookingProductIdRoute
   '/customer/signup': typeof CustomerSignupRoute
   '/producer/$id': typeof ProducerIdRoute
+  '/producer/signup': typeof ProducerSignupRoute
+  '/producer/verify': typeof ProducerVerifyRoute
   '/product/$id': typeof ProductIdRoute
   '/booking/confirm/$id': typeof BookingConfirmIdRoute
 }
@@ -96,6 +112,8 @@ export interface FileRoutesById {
   '/booking/$productId': typeof BookingProductIdRoute
   '/customer/signup': typeof CustomerSignupRoute
   '/producer/$id': typeof ProducerIdRoute
+  '/producer/signup': typeof ProducerSignupRoute
+  '/producer/verify': typeof ProducerVerifyRoute
   '/product/$id': typeof ProductIdRoute
   '/booking/confirm/$id': typeof BookingConfirmIdRoute
 }
@@ -109,6 +127,8 @@ export interface FileRouteTypes {
     | '/booking/$productId'
     | '/customer/signup'
     | '/producer/$id'
+    | '/producer/signup'
+    | '/producer/verify'
     | '/product/$id'
     | '/booking/confirm/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +140,8 @@ export interface FileRouteTypes {
     | '/booking/$productId'
     | '/customer/signup'
     | '/producer/$id'
+    | '/producer/signup'
+    | '/producer/verify'
     | '/product/$id'
     | '/booking/confirm/$id'
   id:
@@ -131,6 +153,8 @@ export interface FileRouteTypes {
     | '/booking/$productId'
     | '/customer/signup'
     | '/producer/$id'
+    | '/producer/signup'
+    | '/producer/verify'
     | '/product/$id'
     | '/booking/confirm/$id'
   fileRoutesById: FileRoutesById
@@ -143,6 +167,8 @@ export interface RootRouteChildren {
   BookingProductIdRoute: typeof BookingProductIdRoute
   CustomerSignupRoute: typeof CustomerSignupRoute
   ProducerIdRoute: typeof ProducerIdRoute
+  ProducerSignupRoute: typeof ProducerSignupRoute
+  ProducerVerifyRoute: typeof ProducerVerifyRoute
   ProductIdRoute: typeof ProductIdRoute
   BookingConfirmIdRoute: typeof BookingConfirmIdRoute
 }
@@ -198,6 +224,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProducerIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/producer/signup': {
+      id: '/producer/signup'
+      path: '/producer/signup'
+      fullPath: '/producer/signup'
+      preLoaderRoute: typeof ProducerSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producer/verify': {
+      id: '/producer/verify'
+      path: '/producer/verify'
+      fullPath: '/producer/verify'
+      preLoaderRoute: typeof ProducerVerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product/$id': {
       id: '/product/$id'
       path: '/product/$id'
@@ -223,6 +263,8 @@ const rootRouteChildren: RootRouteChildren = {
   BookingProductIdRoute: BookingProductIdRoute,
   CustomerSignupRoute: CustomerSignupRoute,
   ProducerIdRoute: ProducerIdRoute,
+  ProducerSignupRoute: ProducerSignupRoute,
+  ProducerVerifyRoute: ProducerVerifyRoute,
   ProductIdRoute: ProductIdRoute,
   BookingConfirmIdRoute: BookingConfirmIdRoute,
 }
