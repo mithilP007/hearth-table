@@ -1,5 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Flame, ShoppingBasket, ChefHat, BadgeCheck, MapPin, QrCode } from "lucide-react";
+import {
+  ArrowRight,
+  Flame,
+  ShoppingBasket,
+  ChefHat,
+  BadgeCheck,
+  MapPin,
+  QrCode,
+  Utensils,
+  ShoppingBag,
+} from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -96,7 +106,7 @@ function Landing() {
           </div>
         </section>
 
-        <section className="ht-shell grid gap-5 pt-10 pb-20 md:grid-cols-2">
+        <section className="ht-shell grid gap-5 pt-10 pb-16 md:grid-cols-2 md:pb-20">
           <RoleCard
             to="/customer/signup"
             icon={<ShoppingBasket className="size-5" aria-hidden />}
@@ -111,6 +121,49 @@ function Landing() {
             body="Get your cottage food permit verified, list tasting portions, and turn samplers into repeat orders."
             cta="Start producer verification"
           />
+        </section>
+
+        <section className="border-t border-border bg-cream-deep/40 py-16 sm:py-20">
+          <div className="ht-shell">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="font-serif text-3xl font-semibold sm:text-4xl">How a tasting works</h2>
+              <p className="mt-3 text-sm text-muted-foreground sm:text-base">
+                Three simple steps from discovery to your new favorite local kitchen.
+              </p>
+            </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              <div className="ht-card flex flex-col gap-3 p-6">
+                <span className="flex size-11 items-center justify-center rounded-full bg-terracotta-soft text-terracotta">
+                  <BadgeCheck className="size-5" aria-hidden />
+                </span>
+                <h3 className="font-serif text-xl font-semibold">Verified kitchens only</h3>
+                <p className="text-sm text-muted-foreground">
+                  Every producer submits their cottage food permit and food handler card before they appear.
+                </p>
+              </div>
+
+              <div className="ht-card flex flex-col gap-3 p-6">
+                <span className="flex size-11 items-center justify-center rounded-full bg-terracotta-soft text-terracotta">
+                  <Utensils className="size-5" aria-hidden />
+                </span>
+                <h3 className="font-serif text-xl font-semibold">Book a small tasting</h3>
+                <p className="text-sm text-muted-foreground">
+                  Pick a time slot, taste a portion at the market or at pickup, and decide from there.
+                </p>
+              </div>
+
+              <div className="ht-card flex flex-col gap-3 p-6">
+                <span className="flex size-11 items-center justify-center rounded-full bg-terracotta-soft text-terracotta">
+                  <ShoppingBag className="size-5" aria-hidden />
+                </span>
+                <h3 className="font-serif text-xl font-semibold">Order full size after</h3>
+                <p className="text-sm text-muted-foreground">
+                  Loved it? Convert your tasting into a full order with the tasting fee credited back.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
 
