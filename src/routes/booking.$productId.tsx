@@ -88,10 +88,21 @@ function BookingFlow() {
       if (freshError) throw freshError;
       if (fresh.booked_count >= fresh.capacity) throw new Error("That slot just filled up.");
 
+      const custId = currentCustomerId(session);
+      await db.from("profiles").upsert(
+        {
+          id: custId,
+          role: "customer",
+          full_name: session?.name ?? "Demo Customer",
+          dietary_preferences: session?.dietary ?? [],
+        },
+        { onConflict: "id" }
+      );
+
       const { data, error } = await db
         .from("bookings")
         .insert({
-          customer_id: currentCustomerId(session),
+          customer_id: custId,
           slot_id: slot.id,
           booking_ref: makeBookingRef(),
           tasting_mode: mode,

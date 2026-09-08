@@ -38,7 +38,7 @@ export const Route = createFileRoute("/producer/availability")({
       { property: "og:description", content: "Open the times you can host tastings." },
     ],
   }),
-  component: ProducerAvailability;
+  component: ProducerAvailability,
 });
 
 function ProducerAvailability() {

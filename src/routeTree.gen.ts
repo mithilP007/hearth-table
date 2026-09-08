@@ -16,6 +16,11 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as BookingProductIdRouteImport } from './routes/booking.$productId'
 import { Route as CustomerSignupRouteImport } from './routes/customer.signup'
 import { Route as ProducerIdRouteImport } from './routes/producer.$id'
+import { Route as ProducerAvailabilityRouteImport } from './routes/producer.availability'
+import { Route as ProducerBookingsRouteImport } from './routes/producer.bookings'
+import { Route as ProducerDashboardRouteImport } from './routes/producer.dashboard'
+import { Route as ProducerProductsRouteImport } from './routes/producer.products'
+import { Route as ProducerSettingsRouteImport } from './routes/producer.settings'
 import { Route as ProducerSignupRouteImport } from './routes/producer.signup'
 import { Route as ProducerVerifyRouteImport } from './routes/producer.verify'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
@@ -56,6 +61,31 @@ const ProducerIdRoute = ProducerIdRouteImport.update({
   path: '/producer/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProducerAvailabilityRoute = ProducerAvailabilityRouteImport.update({
+  id: '/producer/availability',
+  path: '/producer/availability',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducerBookingsRoute = ProducerBookingsRouteImport.update({
+  id: '/producer/bookings',
+  path: '/producer/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducerDashboardRoute = ProducerDashboardRouteImport.update({
+  id: '/producer/dashboard',
+  path: '/producer/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducerProductsRoute = ProducerProductsRouteImport.update({
+  id: '/producer/products',
+  path: '/producer/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProducerSettingsRoute = ProducerSettingsRouteImport.update({
+  id: '/producer/settings',
+  path: '/producer/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProducerSignupRoute = ProducerSignupRouteImport.update({
   id: '/producer/signup',
   path: '/producer/signup',
@@ -85,6 +115,11 @@ export interface FileRoutesByFullPath {
   '/booking/$productId': typeof BookingProductIdRoute
   '/customer/signup': typeof CustomerSignupRoute
   '/producer/$id': typeof ProducerIdRoute
+  '/producer/availability': typeof ProducerAvailabilityRoute
+  '/producer/bookings': typeof ProducerBookingsRoute
+  '/producer/dashboard': typeof ProducerDashboardRoute
+  '/producer/products': typeof ProducerProductsRoute
+  '/producer/settings': typeof ProducerSettingsRoute
   '/producer/signup': typeof ProducerSignupRoute
   '/producer/verify': typeof ProducerVerifyRoute
   '/product/$id': typeof ProductIdRoute
@@ -98,6 +133,11 @@ export interface FileRoutesByTo {
   '/booking/$productId': typeof BookingProductIdRoute
   '/customer/signup': typeof CustomerSignupRoute
   '/producer/$id': typeof ProducerIdRoute
+  '/producer/availability': typeof ProducerAvailabilityRoute
+  '/producer/bookings': typeof ProducerBookingsRoute
+  '/producer/dashboard': typeof ProducerDashboardRoute
+  '/producer/products': typeof ProducerProductsRoute
+  '/producer/settings': typeof ProducerSettingsRoute
   '/producer/signup': typeof ProducerSignupRoute
   '/producer/verify': typeof ProducerVerifyRoute
   '/product/$id': typeof ProductIdRoute
@@ -112,6 +152,11 @@ export interface FileRoutesById {
   '/booking/$productId': typeof BookingProductIdRoute
   '/customer/signup': typeof CustomerSignupRoute
   '/producer/$id': typeof ProducerIdRoute
+  '/producer/availability': typeof ProducerAvailabilityRoute
+  '/producer/bookings': typeof ProducerBookingsRoute
+  '/producer/dashboard': typeof ProducerDashboardRoute
+  '/producer/products': typeof ProducerProductsRoute
+  '/producer/settings': typeof ProducerSettingsRoute
   '/producer/signup': typeof ProducerSignupRoute
   '/producer/verify': typeof ProducerVerifyRoute
   '/product/$id': typeof ProductIdRoute
@@ -127,6 +172,11 @@ export interface FileRouteTypes {
     | '/booking/$productId'
     | '/customer/signup'
     | '/producer/$id'
+    | '/producer/availability'
+    | '/producer/bookings'
+    | '/producer/dashboard'
+    | '/producer/products'
+    | '/producer/settings'
     | '/producer/signup'
     | '/producer/verify'
     | '/product/$id'
@@ -140,6 +190,11 @@ export interface FileRouteTypes {
     | '/booking/$productId'
     | '/customer/signup'
     | '/producer/$id'
+    | '/producer/availability'
+    | '/producer/bookings'
+    | '/producer/dashboard'
+    | '/producer/products'
+    | '/producer/settings'
     | '/producer/signup'
     | '/producer/verify'
     | '/product/$id'
@@ -153,6 +208,11 @@ export interface FileRouteTypes {
     | '/booking/$productId'
     | '/customer/signup'
     | '/producer/$id'
+    | '/producer/availability'
+    | '/producer/bookings'
+    | '/producer/dashboard'
+    | '/producer/products'
+    | '/producer/settings'
     | '/producer/signup'
     | '/producer/verify'
     | '/product/$id'
@@ -167,6 +227,11 @@ export interface RootRouteChildren {
   BookingProductIdRoute: typeof BookingProductIdRoute
   CustomerSignupRoute: typeof CustomerSignupRoute
   ProducerIdRoute: typeof ProducerIdRoute
+  ProducerAvailabilityRoute: typeof ProducerAvailabilityRoute
+  ProducerBookingsRoute: typeof ProducerBookingsRoute
+  ProducerDashboardRoute: typeof ProducerDashboardRoute
+  ProducerProductsRoute: typeof ProducerProductsRoute
+  ProducerSettingsRoute: typeof ProducerSettingsRoute
   ProducerSignupRoute: typeof ProducerSignupRoute
   ProducerVerifyRoute: typeof ProducerVerifyRoute
   ProductIdRoute: typeof ProductIdRoute
@@ -224,6 +289,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProducerIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/producer/availability': {
+      id: '/producer/availability'
+      path: '/producer/availability'
+      fullPath: '/producer/availability'
+      preLoaderRoute: typeof ProducerAvailabilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producer/bookings': {
+      id: '/producer/bookings'
+      path: '/producer/bookings'
+      fullPath: '/producer/bookings'
+      preLoaderRoute: typeof ProducerBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producer/dashboard': {
+      id: '/producer/dashboard'
+      path: '/producer/dashboard'
+      fullPath: '/producer/dashboard'
+      preLoaderRoute: typeof ProducerDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producer/products': {
+      id: '/producer/products'
+      path: '/producer/products'
+      fullPath: '/producer/products'
+      preLoaderRoute: typeof ProducerProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/producer/settings': {
+      id: '/producer/settings'
+      path: '/producer/settings'
+      fullPath: '/producer/settings'
+      preLoaderRoute: typeof ProducerSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/producer/signup': {
       id: '/producer/signup'
       path: '/producer/signup'
@@ -263,6 +363,11 @@ const rootRouteChildren: RootRouteChildren = {
   BookingProductIdRoute: BookingProductIdRoute,
   CustomerSignupRoute: CustomerSignupRoute,
   ProducerIdRoute: ProducerIdRoute,
+  ProducerAvailabilityRoute: ProducerAvailabilityRoute,
+  ProducerBookingsRoute: ProducerBookingsRoute,
+  ProducerDashboardRoute: ProducerDashboardRoute,
+  ProducerProductsRoute: ProducerProductsRoute,
+  ProducerSettingsRoute: ProducerSettingsRoute,
   ProducerSignupRoute: ProducerSignupRoute,
   ProducerVerifyRoute: ProducerVerifyRoute,
   ProductIdRoute: ProductIdRoute,
