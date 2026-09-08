@@ -66,8 +66,12 @@ function MyBookings() {
       const { error } = await db.from("bookings").update({ status: "completed" }).eq("id", booking.id);
       if (error) throw error;
     },
-    onSuccess: () => {
+    onSuccess: (_, booking) => {
+      queryClient.setQueryData<Booking[]>(["bookings", customerId], (old) =>
+        old ? old.map((b) => (b.id === booking.id ? { ...b, status: "completed" as BookingStatus } : b)) : []
+      );
       queryClient.invalidateQueries({ queryKey: ["bookings"] });
+      queryClient.refetchQueries({ queryKey: ["bookings", customerId] });
       setCheckout(null);
       toast.success("Full order placed — tasting marked complete.");
     },

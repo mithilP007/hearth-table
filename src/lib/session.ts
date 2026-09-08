@@ -41,35 +41,45 @@ export const demoProducer: DemoSession = {
   email: "marisol@vegahearth.demo",
 };
 
+let inMemorySession: DemoSession | null = null;
+
 export function readSession(): DemoSession | null {
-  if (typeof window === "undefined") return null;
+  if (typeof window === "undefined") return inMemorySession;
   try {
     const raw = window.localStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as DemoSession) : null;
+    inMemorySession = raw ? (JSON.parse(raw) as DemoSession) : null;
+    return inMemorySession;
   } catch {
-    return null;
+    return inMemorySession;
   }
 }
 
 export function saveSession(session: DemoSession) {
+  inMemorySession = session;
   if (typeof window === "undefined") return;
   window.localStorage.setItem(KEY, JSON.stringify(session));
   window.dispatchEvent(new Event("ht-session"));
 }
 
 export function clearSession() {
+  inMemorySession = null;
   if (typeof window === "undefined") return;
   window.localStorage.removeItem(KEY);
   window.dispatchEvent(new Event("ht-session"));
 }
 
+export const logout = clearSession;
+
 /** Reads the session after hydration so SSR and client markup agree. */
 export function useSession() {
-  const [session, setSession] = useState<DemoSession | null>(null);
+  const [session, setSession] = useState<DemoSession | null>(() => readSession());
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const sync = () => setSession(readSession());
+    const sync = () => {
+      const s = readSession();
+      setSession(s);
+    };
     sync();
     setReady(true);
     window.addEventListener("ht-session", sync);
@@ -80,7 +90,7 @@ export function useSession() {
     };
   }, []);
 
-  return { session, ready };
+  return { session, ready, isLoggedIn: !!session, logout: clearSession, clearSession };
 }
 
 /** Customer identity used for reads/writes; falls back to the seeded demo customer. */

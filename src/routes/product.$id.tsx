@@ -50,7 +50,7 @@ function ProductDetail() {
   return (
     <CustomerShell>
       <div className="grid gap-8 md:grid-cols-2">
-        <div className="space-y-3">
+        <div className="w-full max-w-[600px] space-y-3" style={{ maxWidth: "600px", width: "100%" }}>
           <img
             src={gallery[0] ?? ""}
             alt={product.name}

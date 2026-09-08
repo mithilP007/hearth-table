@@ -80,6 +80,7 @@ export async function fetchDiscoverProducers(): Promise<Producer[]> {
     .select(PRODUCER_FIELDS)
     .eq("verification_status", "verified")
     .eq("is_available_for_tastings", true)
+    .eq("is_deleted", false)
     .order("business_name");
   if (error) throw error;
   return (data ?? []) as Producer[];

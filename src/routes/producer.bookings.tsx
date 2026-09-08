@@ -192,21 +192,29 @@ function ProducerBookings() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Button
-                          className="rounded-full bg-terracotta hover:bg-terracotta/90 text-primary-foreground"
-                          disabled={acceptBooking.isPending || declineBooking.isPending}
-                          onClick={() => acceptBooking.mutate(b)}
-                        >
-                          <Check className="mr-1.5 size-4" /> Accept &amp; Confirm
-                        </Button>
-                        <Button
-                          variant="outline"
-                          className="rounded-full text-destructive border-border"
-                          disabled={acceptBooking.isPending || declineBooking.isPending}
-                          onClick={() => declineBooking.mutate(b)}
-                        >
-                          <X className="mr-1.5 size-4" /> Decline
-                        </Button>
+                        {b.status === "reserved" ? (
+                          <>
+                            <Button
+                              className="rounded-full bg-terracotta hover:bg-terracotta/90 text-primary-foreground"
+                              disabled={b.status !== "reserved" || acceptBooking.isPending || declineBooking.isPending}
+                              onClick={() => acceptBooking.mutate(b)}
+                            >
+                              <Check className="mr-1.5 size-4" /> Accept &amp; Confirm
+                            </Button>
+                            <Button
+                              variant="outline"
+                              className="rounded-full text-destructive border-border"
+                              disabled={b.status !== "reserved" || acceptBooking.isPending || declineBooking.isPending}
+                              onClick={() => declineBooking.mutate(b)}
+                            >
+                              <X className="mr-1.5 size-4" /> Decline
+                            </Button>
+                          </>
+                        ) : (
+                          <span className="text-xs font-medium text-muted-foreground capitalize">
+                            Status: {b.status}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
